@@ -1,7 +1,9 @@
 package com.gabay.demo.config;
 
+import com.gabay.demo.interceptor.MyFeignInterceptor;
 import com.netflix.loadbalancer.IRule;
 import com.netflix.loadbalancer.RandomRule;
+import feign.RequestInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -13,4 +15,8 @@ public class MyFeignConfiguration {
         return new RandomRule();
     }
 
+    @Bean
+    public RequestInterceptor feignInterceptor() {
+        return new MyFeignInterceptor();
+    }
 }

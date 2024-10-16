@@ -1,6 +1,5 @@
-package com.gabay.demo.service;
+package com.gabay.demo.client;
 
-import com.gabay.demo.config.MyFeignConfiguration;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -10,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  */
 //@FeignClient(name = "gabay-service-provider", url = "http://localhost:8092")
 @FeignClient(value = "gabay-service-provider", path = "/api")
-public interface ApiProviderFeign {
+public interface ApiClient {
 
     @GetMapping("/hello")
     String hello(@RequestParam("name") String name);
