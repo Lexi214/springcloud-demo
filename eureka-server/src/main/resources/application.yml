@@ -1,0 +1,17 @@
+server:
+  port: 8761 # 微服务端口号
+spring:
+  application:
+    name: gabay-eureka-server # 微服务应用名
+  security: # 开启安全认证，开启后需要解决服务端注册时的CSRF问题
+    user:
+      name: root # 设置安全登录的用户名
+      password: root # 设置安全登录的密码
+
+# eureka配置
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false # 是否将自己注册到eureka注册中心
+    fetch-registry: false # 是否从eureka注册中心获取注册信息
