@@ -1,0 +1,8 @@
+# 添加 config 客户端配置
+spring:
+  cloud:
+    config:
+      uri: http://localhost:9999 # config 服务端的地址
+      name: eureka-server # 从 Git 仓库获取的配置文件名称
+      label: main # 从哪个分支获取
+      profile: dev # 获取哪个环境下的配置文件

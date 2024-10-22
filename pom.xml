@@ -13,6 +13,9 @@
         <module>eureka-client</module>
         <module>service-provider</module>
         <module>service-consumer</module>
+        <module>hystrix-service</module>
+        <module>config-server</module>
+        <module>config-client</module>
     </modules>
 
     <properties>

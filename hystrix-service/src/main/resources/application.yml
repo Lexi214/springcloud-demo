@@ -1,13 +1,13 @@
 server:
-  port: 9527 # 微服务端口号
+  port: 8093 # 微服务端口号
 spring:
   application:
-    name: gabay-eureka-client # 微服务应用名
+    name: gabay-hystrix-service # 微服务应用名
 
 # eureka配置
 eureka:
   instance:
-    hostname: ${spring.application.name}
+    hostname: localhost
   client:
     register-with-eureka: true # 是否将自己注册到eureka注册中心
     fetch-registry: true # 是否从eureka注册中心获取注册信息
@@ -16,5 +16,3 @@ eureka:
       # 用户名/密码在eureka服务端的配置文件中进行配置
       # 格式：http://用户名:密码@IP地址:端口/eureka
       defaultZone: http://root:root@localhost:8761/eureka/ # eureka服务端的地址
-      # 不需要安全认证时的配置
-      # defaultZone: http://localhost:8761/eureka/ # eureka服务端的地址

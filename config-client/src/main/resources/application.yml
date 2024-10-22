@@ -1,0 +1,11 @@
+server:
+  port: 9998 # 微服务端口号
+spring:
+  application:
+    name: gabay-config-client # 微服务应用名
+
+# eureka配置
+eureka:
+  instance:
+    hostname: localhost
+    ## eureka 服务端配置信息从 config 服务端获取

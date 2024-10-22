@@ -1,0 +1,14 @@
+server:
+  port: 9999 # 微服务端口号
+spring:
+  application:
+    name: gabay-config-server # 微服务应用名
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/Lexi214/springcloud-demo.git # Git仓库地址
+#          username: # Git仓库的登录用户名称
+#          password: # Git仓库的登录密码
+#          search-paths: # 搜索的根目录，从仓库中的哪个目录中开始查找配置文件
+          default-label: main # 默认访问的分支名称
