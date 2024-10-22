@@ -1,8 +1,31 @@
-# 添加 config 客户端配置
+# config客户端配置
 spring:
   cloud:
     config:
-      uri: http://localhost:9999 # config 服务端的地址
-      name: eureka-server # 从 Git 仓库获取的配置文件名称
+      name: config-client # 从Git仓库获取的配置文件名称
       label: main # 从哪个分支获取
       profile: dev # 获取哪个环境下的配置文件
+      # 直接通过config服务端的地址获取配置信息
+      # uri: http://localhost:9999 # config服务端的地址
+      # 从eureka注册中心获取配置信息
+      discovery:
+        enabled: true # 开启服务发现的功能，这里也就是支持eureka的功能
+        service-id: gabay-config-server # config服务端的微服务应用名称
+
+# eureka配置
+## 将config客户端注册到eureka服务端
+eureka:
+  instance:
+    prefer-ip-address: true # 开启采用IP注册形式
+    # ${spring.cloud.client.ip-address} 这个属性可以获取到当前机器的IP地址
+    instance-id: ${spring.cloud.client.ip-address}:${server.port} # 设置当前服务的实例ID，采用：IP+端口形式
+  client:
+    register-with-eureka: true # 是否将自己注册到eureka注册中心
+    fetch-registry: true # 是否从eureka注册中心获取注册信息
+    service-url:
+      # 客户端访问eureka注册中心地址时，添加安全认证
+      # 用户名/密码在eureka服务端的配置文件中进行配置
+      # 格式：http://用户名:密码@IP地址:端口/eureka
+      defaultZone: http://root:root@localhost:8761/eureka/ # eureka服务端的地址
+      # 不需要安全认证时的配置
+      # defaultZone: http://localhost:8761/eureka/ # eureka服务端的地址
