@@ -1,5 +1,5 @@
 server:
-  port: 8092 # 微服务端口号
+  port: 7001 # 微服务端口号
 spring:
   application:
     name: gabay-service-provider # 微服务应用名
@@ -7,11 +7,12 @@ spring:
 # eureka配置
 eureka:
   instance:
-    hostname: localhost
-    # 设置实例的IP地址
-    #ip-address: 127.0.0.1
+    #hostname: localhost
+    hostname: ${spring.application.name}
     # 是否采用IP地址的格式显示在eureka服务器上
-    #prefer-ip-address: true
+    prefer-ip-address: true
+    # ${spring.cloud.client.ip-address} 这个属性可以获取到当前机器的IP地址
+    instance-id: ${spring.cloud.client.ip-address}:${server.port} # 设置当前服务的实例ID，采用：IP+端口形式
   client:
     register-with-eureka: true # 是否将自己注册到eureka注册中心
     fetch-registry: true # 是否从eureka注册中心获取注册信息
@@ -19,6 +20,6 @@ eureka:
       # 客户端访问eureka注册中心地址时，添加安全认证
       # 用户名/密码在eureka服务端的配置文件中进行配置
       # 格式：http://用户名:密码@IP地址:端口/eureka
-      defaultZone: http://root:root@localhost:8761/eureka/ # eureka服务端的地址
+      defaultZone: http://root:root@localhost:8880/eureka/ # eureka服务端的地址
       # 不需要安全认证时的配置
-      #defaultZone: http://localhost:8761/eureka/ # eureka服务端的地址
+      #defaultZone: http://localhost:8880/eureka/ # eureka服务端的地址

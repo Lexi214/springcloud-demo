@@ -1,5 +1,5 @@
 server:
-  port: 8761 # 微服务端口号
+  port: 8880 # 微服务端口号
 spring:
   application:
     name: gabay-eureka-server # 微服务应用名

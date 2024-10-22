@@ -6,7 +6,7 @@ spring:
       label: main # 从哪个分支获取
       profile: dev # 获取哪个环境下的配置文件
       # 直接通过config服务端的地址获取配置信息
-      # uri: http://localhost:9999 # config服务端的地址
+      # uri: http://localhost:9990 # config服务端的地址
       # 从eureka注册中心获取配置信息
       discovery:
         enabled: true # 开启服务发现的功能，这里也就是支持eureka的功能
@@ -26,6 +26,6 @@ eureka:
       # 客户端访问eureka注册中心地址时，添加安全认证
       # 用户名/密码在eureka服务端的配置文件中进行配置
       # 格式：http://用户名:密码@IP地址:端口/eureka
-      defaultZone: http://root:root@localhost:8761/eureka/ # eureka服务端的地址
+      defaultZone: http://root:root@localhost:8880/eureka/ # eureka服务端的地址
       # 不需要安全认证时的配置
-      # defaultZone: http://localhost:8761/eureka/ # eureka服务端的地址
+      # defaultZone: http://localhost:8880/eureka/ # eureka服务端的地址
