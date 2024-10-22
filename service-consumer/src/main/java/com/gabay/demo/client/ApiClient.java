@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 /**
  * 采用 OpenFeign 调用 gabay-service-provider 微服务
  */
-//@FeignClient(name = "gabay-service-provider", url = "http://localhost:8092")
+//@FeignClient(name = "gabay-service-provider", url = "http://localhost:7001")
 @FeignClient(value = "gabay-service-provider", path = "/api")
 public interface ApiClient {
 

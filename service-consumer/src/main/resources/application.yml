@@ -7,7 +7,11 @@ spring:
 # eureka配置
 eureka:
   instance:
-    hostname: localhost
+    hostname: ${spring.application.name}
+    # 是否采用IP地址的格式显示在eureka服务器上
+    prefer-ip-address: true
+    # ${spring.cloud.client.ip-address} 这个属性可以获取到当前机器的IP地址
+    instance-id: ${spring.cloud.client.ip-address}:${server.port} # 设置当前服务的实例ID，采用：IP+端口形式
   client:
     register-with-eureka: true # 是否将自己注册到eureka注册中心
     fetch-registry: true # 是否从eureka注册中心获取注册信息

@@ -1,20 +1,37 @@
 server:
-  port: 11110
-
+  port: 11110 # 微服务端口号
 spring:
   application:
-    name: gabay-gateway-server
+    name: gabay-gateway-server # 微服务应用名
   cloud:
     gateway:
-      routes:
-        - id: gabay-service-provider # 路由唯一标识，通常和微服务应用名称保持一致
-          uri:
-          predicates:
-            - Path=/** # 使用路由断言
-          filters:
+      discovery: # 动态路由
+        locator:
+          enabled: true # 启用动态路由服务名称转发功能
+          lower-case-service-id: true # 开启服务名称小写
+#      routes: # 静态路由
+#        - id: gabay-service-provider # 路由唯一标识，通常和微服务应用名称保持一致
+#          uri:
+#          predicates:
+#            - Path=/** # 使用路由断言
+#          filters:
 
 # eureka配置
 ## 用于实现动态路由
+eureka:
+  instance:
+    hostname: ${spring.application.name}
+    prefer-ip-address: true # 开启采用IP注册形式
+    # ${spring.cloud.client.ip-address} 这个属性可以获取到当前机器的IP地址
+    instance-id: ${spring.cloud.client.ip-address}:${server.port} # 设置当前服务的实例ID，采用：IP+端口形式
+  client:
+    register-with-eureka: true # 是否将自己注册到eureka注册中心
+    fetch-registry: true # 是否从eureka注册中心获取注册信息
+    service-url:
+      # 客户端访问eureka注册中心地址时，添加安全认证
+      # 用户名/密码在eureka服务端的配置文件中进行配置
+      # 格式：http://用户名:密码@IP地址:端口/eureka
+      defaultZone: http://root:root@localhost:8880/eureka/ # eureka服务端的地址
 
 # redis配置
 ## 用于实现服务限流
