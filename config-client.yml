@@ -1,5 +1,5 @@
 server:
-  port: 9998 # 微服务端口号
+  port: 9991 # 微服务端口号
 spring:
   application:
     name: gabay-config-client # 微服务应用名
